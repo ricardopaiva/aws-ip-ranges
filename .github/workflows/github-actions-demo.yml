@@ -36,7 +36,7 @@ jobs:
       - name: Get version
         id: vars
         run: |
-          echo "{name}={value}" >> $VERSION2
+          echo "TEST" >> $GITHUB_ENV
       - name: Test output
         run: |
           # echo $IPS
