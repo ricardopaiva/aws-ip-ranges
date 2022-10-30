@@ -25,14 +25,18 @@ jobs:
       # - name: Show json file 3
       #   run: |
       #     export IPS = $("cat ip-ranges.json")
+      # - name: Get version
+      #   id: vars
+      #   run: |
+      #     # echo ::set-output name=version::$(cat VERSION)
+      #     echo "{name}={value}" >> $VERSION
+      #     # export IPS = $(cat ip-ranges.json)
+      #     # echo "count=5" >> $GITHUB_OUTPUT
+      #     # export IPS2 = cat ip-ranges.json
       - name: Get version
         id: vars
         run: |
-          # echo ::set-output name=version::$(cat VERSION)
           echo "{name}={value}" >> $VERSION
-          # export IPS = $(cat ip-ranges.json)
-          # echo "count=5" >> $GITHUB_OUTPUT
-          # export IPS2 = cat ip-ranges.json
       - name: Test output
         run: |
           # echo $IPS
