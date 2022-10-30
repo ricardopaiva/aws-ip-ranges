@@ -39,9 +39,8 @@ jobs:
           echo "TEST=TEST2" >> ${GITHUB_ENV}
       - name: Test output
         run: |
-          # echo $IPS
-          # echo $IPS2
-          echo ${{ steps.vars.outputs.version }}
+          echo ${{ steps.vars.outputs.TEST }}
+          echo ${{ steps.vars.outputs.GITHUB_ENV }}
       - name: Parse json to ip
         run: |
           echo "cat ip-ranges.json | jq -r '.prefixes[] | select(.region | startswith("us-east-")) .ip_prefix' > ips.txt"
