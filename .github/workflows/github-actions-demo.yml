@@ -1,0 +1,50 @@
+name: Update AWS IP Ranges for US East
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: REST API with curl
+        run: |
+          curl -X GET "https://ip-ranges.amazonaws.com/ip-ranges.json" -o ip-ranges.json
+      # - name: Show json file
+      #   run: |
+      #     echo "cat ip-ranges.json"
+      #     echo $("cat ip-ranges.json")
+      # # - name: Show json file 2
+      # #   run: |
+      # #     export IPS = $("cat ip-ranges.json | jq -r '.prefixes[] | select(.region | startswith("us-east-")) .ip_prefix'")
+      # - name: Show json file 3
+      #   run: |
+      #     export IPS = $("cat ip-ranges.json")
+      # - name: Get version
+      #   id: vars
+      #   run: |
+      #     # echo ::set-output name=version::$(cat VERSION)
+      #     echo "{name}={value}" >> $VERSION
+      #     # export IPS = $(cat ip-ranges.json)
+      #     # echo "count=5" >> $GITHUB_OUTPUT
+      #     # export IPS2 = cat ip-ranges.json
+      - name: Get version
+        id: vars
+        run: |
+          echo "TEST=TEST2" >> ${GITHUB_ENV}
+      - name: Test output
+        run: |
+          echo ${{ steps.vars.outputs.TEST }}
+          echo ${{ steps.vars.outputs.GITHUB_ENV }}
+      - name: Parse json to ip
+        run: |
+          echo "cat ip-ranges.json | jq -r '.prefixes[] | select(.region | startswith("us-east-")) .ip_prefix' > ips.txt"
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
