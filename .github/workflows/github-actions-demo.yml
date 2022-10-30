@@ -18,6 +18,11 @@ jobs:
       - name: Show json file
         run: |
           echo "cat ip-ranges.json"
+      - name: Get version
+        id: vars
+        run: echo ::set-output name=version::$(cat ip-ranges.json)
+      - name: Test output
+        run: echo ${{ steps.vars.outputs.version }}          
       - name: Parse json to ip
         run: |
           echo "cat ip-ranges.json | jq -r '.prefixes[] | select(.region | startswith("us-east-")) .ip_prefix' > ips.txt"
