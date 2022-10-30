@@ -18,15 +18,15 @@ jobs:
       - name: Show json file
         run: |
           echo "cat ip-ranges.json"
-      - name: Get version
-        id: vars
-        run: |
-          export IPS = $(cat ip-ranges.json)
-          export IPS2 = cat ip-ranges.json
-      - name: Test output
-        run: |
-          echo $IPS
-          echo $IPS2   
+      # - name: Get version
+      #   id: vars
+      #   run: |
+      #     export IPS = $(cat ip-ranges.json)
+      #     export IPS2 = cat ip-ranges.json
+      # - name: Test output
+      #   run: |
+      #     echo $IPS
+      #     echo $IPS2   
       - name: Parse json to ip
         run: |
           echo "cat ip-ranges.json | jq -r '.prefixes[] | select(.region | startswith("us-east-")) .ip_prefix' > ips.txt"
