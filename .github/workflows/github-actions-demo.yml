@@ -36,7 +36,7 @@ jobs:
       - name: Get version
         id: vars
         run: |
-          echo "{name}={value}" >> $VERSION
+          echo "{name}={value}" >> $VERSION2
       - name: Test output
         run: |
           # echo $IPS
