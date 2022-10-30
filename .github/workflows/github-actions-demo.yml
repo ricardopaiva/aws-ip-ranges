@@ -21,8 +21,8 @@ jobs:
       - name: Get version
         id: vars
         run: |
-          IPS = $(cat ip-ranges.json)
-          IPS2 = cat ip-ranges.json
+          export IPS = $(cat ip-ranges.json)
+          export IPS2 = cat ip-ranges.json
       - name: Test output
         run: |
           echo $IPS
